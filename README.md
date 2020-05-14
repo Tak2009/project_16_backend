@@ -156,3 +156,7 @@ heroku runをつけるとheroku上でrailsコマンドを打つことができ�
 
 参照先：
 https://qiita.com/kazukimatsumoto/items/a0daa7281a3948701c39
+
+
+https://qiita.com/akiko-pusu/items/dec93cca4855e811ba6c
+
