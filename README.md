@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# install postgresql
+1. $ brew install postgresql
 
-Things you may want to cover:
+2. check if installed
+$ postgres --version
 
-* Ruby version
+3. check the default path
+$ which postgres
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+4. set the PGDATA environment variable. brew でinstall時にデフォルトで/usr/local/var/postgresに作成されたものを使うのが一般的みたい
+$ export PGDATA=/usr/local/var/postgres
