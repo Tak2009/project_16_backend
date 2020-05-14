@@ -1,6 +1,6 @@
 # README
 
-# rails api
+# Rails API
 1. $ --api
 2. $ rails g resource
 3. asscoiation
@@ -77,15 +77,82 @@ production:
 このように数字を削除するということになります。(今回は2.3.1の部分)
 
 
-# install postgresql
-1. $ brew install postgresql
+# 以下は自分のローカル環境にPostgresを入れたい場合。上の設定ではプロダクションとテストを分けているが以下をすると分ける必要なしになる。
 
-2. check if installed
-$ postgres --version
+    # install postgresql
+    1. $ brew install postgresql
 
-3. check the default path
-$ which postgres
+    2. check if installed
+    $ postgres --version
 
-4. set the PGDATA environment variable. brew でinstall時にデフォルトで/usr/local/var/postgresに作成されたものを使うのが一般的みたい
-$ export PGDATA=/usr/local/var/postgres
+    3. check the default path
+    $ which postgres
 
+    4. set the PGDATA environment variable. brew でinstall時にデフォルトで/usr/local/var/postgresに作成されたものを使うのが一般的みたい
+    $ export PGDATA=/usr/local/var/postgres
+
+# Herokuの登録
+
+1. herokuの機能を自分のPCに紐付けましょう。Heroku Command Line Interface, 今回はMac用をインストール。
+
+$ brew tap heroku/brew && brew install heroku
+
+2. $ heroku --versionで
+>>heroku/7.0.47 darwin-x64 node-v12.16.2
+が出てきたらOK
+
+3. PCからherokuにログイン
+$ heroku loginを打つと
+
+heroku: Press any key to open up the browser to login or q to exit:
+
+と出てくるので指示に従う。
+
+pening browser to https://cli-auth.heroku.com/auth/cli/browser/xxxxxxxxxxxxxxxxxxxxxxx
+Logging in... done
+Logged in as xxxxxx@xxxx.com
+
+と出てきたら完了。
+
+4. アプリごとに最初の一回だけ！
+$ heroku create 好きなアプリ名 (「好きなアプリ名」に入力する文字列はurlになるものです。_とか使えないので注意！)
+
+例
+$ heroku create local-biz-supporter
+>> Creating ⬢ local-biz-supporter... done
+>> https://local-biz-supporter.herokuapp.com/ | https://git.heroku.com/local-biz-supporter.git
+
+5. herokuにデプロイ
+ここからデプロイ。ターミナルで以下のコマンド実行。
+
+$　git push heroku master
+
+herokuを使うと、このようにコマンド一つでRailsアプリがデプロイできる。
+
+詳しくみていくと、このタイミングでproductionでのbundle installや
+rake assets:precompile(ざっくりいうと画像の表示)なども行われているのがわかる。
+
+    remote:        Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment
+    remote:        The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+    remote:        Fetching gem metadata from https://rubygems.org/............
+
+自分の指定したアプリ名を含んだurlが生成されていますが、これがまさに自分のアプリのURL
+
+    remote: Verifying deploy... done.
+    To https://git.heroku.com/local-biz-supporter.git
+    * [new branch]      master -> master
+
+6. 本番環境(heroku)でのマイグレーション
+
+$ heroku run rails db:migrate
+
+heroku runをつけるとheroku上でrailsコマンドを打つことができます。他にもheroku run rails cなどなど、色々ありますので調べてみましょう。
+
+以上でherokuでのデプロイは完了になります！早速、先ほどメモしたURLをブラウザのアドレスバーに貼り付けて、確認する。
+
+以上
+
+
+
+参照先：
+https://qiita.com/kazukimatsumoto/items/a0daa7281a3948701c39

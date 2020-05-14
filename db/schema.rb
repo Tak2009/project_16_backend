@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 2020_05_14_160146) do
 
   create_table "pubs", force: :cascade do |t|
     t.string "name"
+    t.string "email"
+    t.integer "phone"
     t.string "address"
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
@@ -22,6 +24,8 @@ ActiveRecord::Schema.define(version: 2020_05_14_160146) do
 
   create_table "supporters", force: :cascade do |t|
     t.string "name"
+    t.string "email"
+    t.integer "phone"
     t.string "address"
     t.string "postcode"
     t.datetime "created_at", precision: 6, null: false
