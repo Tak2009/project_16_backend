@@ -1,0 +1,4 @@
+id,name,email,phone,address,postcode,created_at,updated_at
+1,Pub1,aaa@gmail.com,0,"AAAAAAA, BBBB, CCC",HD5 5LI,2020-05-15 16:46:40.398242,2020-05-15 16:46:40.398242
+2,Pub2,bbb@gmail.com,1,"XXXXXX, QQQ, III",HD6 6LI,2020-05-15 16:46:40.421468,2020-05-15 16:46:40.421468
+3,Pub3,ccc@gmail.com,2,"LLLLLL, ZZ, DDD",HD7 7LI,2020-05-15 16:46:40.43186,2020-05-15 16:46:40.43186
