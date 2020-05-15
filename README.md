@@ -220,6 +220,8 @@ heroku psをしてみますと、プロセスは起動していることは確�
     #下記を追記
     /.env
 
+    
+
 
 参照先：
 
@@ -229,17 +231,21 @@ https://qiita.com/kazukimatsumoto/items/a0daa7281a3948701c39
 heroku commands
 https://qiita.com/akiko-pusu/items/dec93cca4855e811ba6c
 
-curl
-https://qiita.com/kaizen_nagoya/items/f13df3e2c9fe6c3bf6fc
-
 basic verification
 https://qiita.com/veqcc/items/7e64a68d99493776231c
+
+
+
+
+その他参照
+Enviroment Variables 2
+https://www.task-notes.com/entry/20160920/1474343389
 
 How To Use Environment Variables in Ruby　Basic認証を設定した
 https://qiita.com/yuichir43705457/items/7cfcae6546876086b849
 
-Enviroment Variables 2
-https://www.task-notes.com/entry/20160920/1474343389
-
 How To Use Environment Variables in Ruby
 https://www.rubyguides.com/2019/01/ruby-environment-variables/
+
+curl
+https://qiita.com/kaizen_nagoya/items/f13df3e2c9fe6c3bf6fc
