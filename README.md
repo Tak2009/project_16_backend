@@ -153,10 +153,93 @@ heroku runをつけるとheroku上でrailsコマンドを打つことができ�
 以上
 
 
+# Heroku Commands
+
+heroku ps:	アプリケーションのプロセスを確認、起動停止もこちらを利用	
+heroku releases:	リリース（デプロイ）の記録を表示	
+heroku logs:	アプリケーションのログを表示	
+heroku container	今回は扱いませんがDocker imageをpushできる..!	
+heroku config:	環境変数設定や、Basic認証をかけたい時に	
+heroku maintenance:	停止はしないけどメンテ画面にするとか
+
+1. to stop dynos
+$ heroku ps:scale web=1
+
+2. to start up dynos
+$ heroku ps:scale web=0
+
+3. How to restrict access instead of shutting down the server.
+$ heroku maintenance:on
+heroku psをしてみますと、プロセスは起動していることは確認できるが
+ブラウザから確認してみると、メンテナンス画面（という趣旨）のレスポンスが返ってくる。
+デベロッパーツールの　Networkを見ると503でサーバーが落ちている時と同じ
+
+4. How to access while maintenance:on
+メンテモードの時は自分もアクセスできなくなるのでBasic認証を設定しておくと、自分だけはアクセスできる。
+
+# Basic 認証　basic verification
+
+1.RailsアプリをHerokuにデプロイして個人用に動かしているので、そこにBasic認証の機能を設定したときのメモ。
+2.以下をApplication Contorllerに
+
+    class ApplicationController < ActionController::Base
+      before_action :basic
+
+      private
+      def basic
+        authenticate_or_request_with_http_basic do |name, password|
+          name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+        end
+      end
+    end
+
+  プロダクション環境だけBASIC認証をかけたいなら
+
+    if Rails.env == "production"
+
+　を追加。
+
+* 特定のコントローラーだけに認証をかけたいならapplication.rbではなくそのコントローラーのファイルに書き
+
+3.　.envで環境変数を管理しているのでそちらに記載
+
+　　　BASIC_AUTH_NAME=hegohego
+　　　BASIC_AUTH_PASSWORD=fugafuga
+
+4.　Herokuの環境変数も設定する。Railsの知識ではなくHerokuの知識
+
+  ＃＃ herokuの環境変数を確認
+  $ heroku config
+
+  ＃＃ herokuの環境変数を追加・変更
+  $ heroku config:set BASIC_AUTH_NAME=hogehoge
+  $ heroku config:set BASIC_AUTH_PASSWORD=fugafuga
+
+5.　.gitignoreを編集　作成した.envファイルがgithubにアップされないように.gitignoreファイルに記述
+
+    #下記を追記
+    /.env
+
 
 参照先：
+
+heroku deploy
 https://qiita.com/kazukimatsumoto/items/a0daa7281a3948701c39
 
-
+heroku commands
 https://qiita.com/akiko-pusu/items/dec93cca4855e811ba6c
 
+curl
+https://qiita.com/kaizen_nagoya/items/f13df3e2c9fe6c3bf6fc
+
+basic verification
+https://qiita.com/veqcc/items/7e64a68d99493776231c
+
+How To Use Environment Variables in Ruby　Basic認証を設定した
+https://qiita.com/yuichir43705457/items/7cfcae6546876086b849
+
+Enviroment Variables 2
+https://www.task-notes.com/entry/20160920/1474343389
+
+How To Use Environment Variables in Ruby
+https://www.rubyguides.com/2019/01/ruby-environment-variables/
