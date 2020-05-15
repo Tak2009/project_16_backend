@@ -220,6 +220,10 @@ Basic認証を使うと良いのですが、アプリケーション&アプリ�
     /.env
 
 
+# How to access Heroku DB from local PC
+
+https://qiita.com/akiko-pusu/items/305e291465d6aac04bf3
+
 
 
 参照先：
