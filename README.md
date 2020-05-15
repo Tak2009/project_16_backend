@@ -175,6 +175,7 @@ heroku psをしてみますと、プロセスは起動していることは確�
 デベロッパーツールの　Networkを見ると503でサーバーが落ちている時と同じ
 
 4. How to access while maintenance:on
+Basic認証を使うと良いのですが、アプリケーション&アプリケーションサーバごとに方法がことなる
 メンテモードの時は自分もアクセスできなくなるのでBasic認証を設定しておくと、自分だけはアクセスできる。
 
 # Basic 認証　basic verification
@@ -187,9 +188,7 @@ heroku psをしてみますと、プロセスは起動していることは確�
 
       private
       def basic
-        authenticate_or_request_with_http_basic do |name, password|
-          name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
-        end
+        http_basic_authenticate_with name: ENV['BASIC_AUTH_NAME'], password: ENV['BASIC_AUTH_PASSWORD'] if Rails.env.production?
       end
     end
 
@@ -220,7 +219,7 @@ heroku psをしてみますと、プロセスは起動していることは確�
     #下記を追記
     /.env
 
-    
+
 
 
 参照先：
@@ -233,6 +232,8 @@ https://qiita.com/akiko-pusu/items/dec93cca4855e811ba6c
 
 basic verification
 https://qiita.com/veqcc/items/7e64a68d99493776231c
+
+https://ytkg.hateblo.jp/entry/2019/11/26/131621
 
 
 
