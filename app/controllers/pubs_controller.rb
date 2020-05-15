@@ -1,6 +1,7 @@
 class PubsController < ApplicationController
     
     def index
-        render plain: "hello"
+        pubs = Pub.all
+        render json: pubs
     end
 end
