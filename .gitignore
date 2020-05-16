@@ -33,3 +33,6 @@
 
 # Ignore enviroment variables
 /.env
+
+# Ignore .foreman
+/.foreman
