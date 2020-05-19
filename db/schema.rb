@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_160146) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "name"
+    t.string "message"
     t.integer "pub_id", null: false
     t.integer "supporter_id", null: false
     t.datetime "created_at", precision: 6, null: false
