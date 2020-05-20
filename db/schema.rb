@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 2020_05_14_160146) do
     t.integer "phone"
     t.string "address"
     t.string "postcode"
+    t.string "situation"
+    t.string "message_to_supporters"
+    t.string "image_pic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
