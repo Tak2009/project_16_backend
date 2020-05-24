@@ -50,3 +50,5 @@ gem "foreman"
 
 # メール認証やパスワードリセットなどがデフォルトで組み込まれていて、よく使われている devise を使ってみる。
 gem 'devise'
+
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'

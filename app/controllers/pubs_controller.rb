@@ -2,7 +2,7 @@ class PubsController < ApplicationController
     
     def index
         pubs = Pub.all
-        render json: pubs
+        render json: pubs, include: [:tickets] # added tickets 
         # render plain: "hello world"
     end
 
