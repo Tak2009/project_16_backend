@@ -50,5 +50,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # ActionMailerのビューでURLを生成する際のデフォルト値を手順の通りに追記します。以下の設定はRailsの実行環境がdevelopmentモードのものなので、productionモードで動作させる場合は別途設定が必要となる点に注意が必要
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

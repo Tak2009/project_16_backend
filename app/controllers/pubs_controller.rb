@@ -1,5 +1,5 @@
 class PubsController < ApplicationController
-    
+  before_action :authenticate_user!, except: %i[index]
     def index
         pubs = Pub.all
         render json: pubs, include: [:tickets] # added tickets 
